@@ -1,0 +1,48 @@
+# =========================
+# Maven / Java build output
+# =========================
+target/
+**/target/
+
+# =========================
+# Protobuf / gRPC generated code
+# =========================
+**/generated-sources/
+**/generated-test-sources/
+
+# If you ever generate directly under src (some IDEs do this)
+**/src/generated/
+**/src/main/generated/
+
+# =========================
+# IDE files
+# =========================
+
+# IntelliJ IDEA
+.idea/
+*.iml
+
+# VS Code
+.vscode/
+
+# Eclipse
+.project
+.classpath
+.settings/
+
+# =========================
+# OS / misc
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# Logs
+# =========================
+*.log
+
+# =========================
+# Local env / secrets
+# =========================
+.env
+.env.*

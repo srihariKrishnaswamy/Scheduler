@@ -1,0 +1,47 @@
+syntax = "proto3";
+package scheduler;
+
+option java_multiple_files = true;
+option java_package = "com.scheduler.proto";
+option java_outer_classname = "SchedulerProto";
+
+enum JobStatus {
+  JOB_STATUS_UNSPECIFIED = 0;
+  QUEUED = 1;
+  RUNNING = 2;
+  SUCCEEDED = 3;
+}
+
+message JobSpec {
+  string name = 1;
+  repeated string command = 2; // ["bash","-lc","echo hello && sleep 1"]
+}
+
+message Job {
+  string job_id = 1;
+  JobSpec spec = 2;
+  JobStatus status = 3;
+  string assigned_worker_id = 4;
+}
+
+message SubmitJobRequest { JobSpec spec = 1; }
+message SubmitJobResponse { Job job = 1; }
+
+message RegisterWorkerRequest { string worker_id = 1; }
+message RegisterWorkerResponse {}
+
+message PollWorkRequest { string worker_id = 1; }
+message PollWorkResponse { Job job = 1; } // empty job_id => no work
+
+message ReportResultRequest {
+  string worker_id = 1;
+  string job_id = 2;
+}
+message ReportResultResponse {}
+
+service SchedulerService {
+  rpc SubmitJob(SubmitJobRequest) returns (SubmitJobResponse);
+  rpc RegisterWorker(RegisterWorkerRequest) returns (RegisterWorkerResponse);
+  rpc PollWork(PollWorkRequest) returns (PollWorkResponse);
+  rpc ReportResult(ReportResultRequest) returns (ReportResultResponse);
+}
