@@ -8,7 +8,7 @@ import java.util.List;
 
 public final class SubmitJobMain {
   public static void main(String[] args) {
-    ManagedChannel channel = ManagedChannelBuilder.forTarget("localhost:50052")
+    ManagedChannel channel = ManagedChannelBuilder.forTarget("localhost:50053")
         .usePlaintext()
         .build();
     SchedulerServiceGrpc.SchedulerServiceBlockingStub stub = SchedulerServiceGrpc.newBlockingStub(channel);
