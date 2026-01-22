@@ -11,7 +11,7 @@ import java.util.UUID;
 
 public final class WorkerMain {
   public static void main(String[] args) throws Exception {
-    String target = "localhost:50051";
+    String target = "localhost:50052";
     String workerId = "worker-" + UUID.randomUUID();
 
     ManagedChannel channel = ManagedChannelBuilder.forTarget(target)

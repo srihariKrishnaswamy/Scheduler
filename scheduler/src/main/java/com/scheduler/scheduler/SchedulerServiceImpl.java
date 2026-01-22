@@ -29,14 +29,14 @@ public final class SchedulerServiceImpl extends SchedulerServiceGrpc.SchedulerSe
   private final Set<String> workers = ConcurrentHashMap.newKeySet();
 
   @Override
-  public void RegisterWorker(RegisterWorkerRequest request, StreamObserver<RegisterWorkerResponse> responseObserver) {
+  public void registerWorker(RegisterWorkerRequest request, StreamObserver<RegisterWorkerResponse> responseObserver) {
     workers.add(request.getWorkerId());
     responseObserver.onNext(RegisterWorkerResponse.newBuilder().build());
     responseObserver.onCompleted();
   }
 
   @Override
-  public void SubmitJob(SubmitJobRequest request, StreamObserver<SubmitJobResponse> responseObserver) {
+  public void submitJob(SubmitJobRequest request, StreamObserver<SubmitJobResponse> responseObserver) {
     if (request.getSpec().getCommandCount() == 0) {
       responseObserver.onError(new IllegalArgumentException("spec.command must be non-empty"));
       return;
@@ -58,7 +58,7 @@ public final class SchedulerServiceImpl extends SchedulerServiceGrpc.SchedulerSe
   }
 
   @Override
-  public void PollWork(PollWorkRequest request, StreamObserver<PollWorkResponse> responseObserver) {
+  public void pollWork(PollWorkRequest request, StreamObserver<PollWorkResponse> responseObserver) {
     String workerId = request.getWorkerId();
     if (!workers.contains(workerId)) {
       responseObserver.onError(new IllegalArgumentException("worker not registered: " + workerId));
@@ -94,7 +94,7 @@ public final class SchedulerServiceImpl extends SchedulerServiceGrpc.SchedulerSe
   }
 
   @Override
-  public void ReportResult(ReportResultRequest request, StreamObserver<ReportResultResponse> responseObserver) {
+  public void reportResult(ReportResultRequest request, StreamObserver<ReportResultResponse> responseObserver) {
     JobRecord rec = jobs.get(request.getJobId());
     if (rec == null) {
       responseObserver.onError(new IllegalArgumentException("unknown job: " + request.getJobId()));
