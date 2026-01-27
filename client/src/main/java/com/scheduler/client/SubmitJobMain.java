@@ -1,5 +1,7 @@
 package com.scheduler.client;
 
+import static com.scheduler.common.Constants.PORT;
+
 import com.scheduler.proto.*;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
@@ -8,7 +10,7 @@ import java.util.List;
 
 public final class SubmitJobMain {
   public static void main(String[] args) {
-    ManagedChannel channel = ManagedChannelBuilder.forTarget("localhost:50054")
+    ManagedChannel channel = ManagedChannelBuilder.forTarget("localhost:" + PORT)
         .usePlaintext()
         .build();
     SchedulerServiceGrpc.SchedulerServiceBlockingStub stub = SchedulerServiceGrpc.newBlockingStub(channel);

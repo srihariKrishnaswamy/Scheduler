@@ -1,5 +1,7 @@
 package com.scheduler.client;
 
+import static com.scheduler.common.Constants.PORT;
+
 import com.scheduler.proto.*;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
@@ -63,7 +65,7 @@ public final class SubmitJobMainV2 {
     }
 
     static Cli parse(String[] args) {
-      String target = "localhost:50054"; // match your scheduler port
+      String target = "localhost:" + PORT; // match your scheduler port
       String name = "demo";
 
       List<String> cmd = null;

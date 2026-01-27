@@ -1,5 +1,7 @@
 package com.scheduler.worker;
 
+import static com.scheduler.common.Constants.PORT;
+
 import com.scheduler.proto.*;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
@@ -11,7 +13,7 @@ import java.util.UUID;
 
 public final class WorkerMain {
   public static void main(String[] args) throws Exception {
-    String target = "localhost:50054";
+    String target = "localhost:" + PORT;
     String workerId = "worker-" + UUID.randomUUID();
 
     ManagedChannel channel = ManagedChannelBuilder.forTarget(target)
