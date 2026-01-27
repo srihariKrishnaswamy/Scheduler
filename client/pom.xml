@@ -39,7 +39,7 @@
         <artifactId>exec-maven-plugin</artifactId>
         <version>3.3.0</version>
         <configuration>
-          <mainClass>com.scheduler.client.SubmitJobMain</mainClass>
+          <mainClass>com.scheduler.client.SubmitJobMainV2</mainClass>
         </configuration>
       </plugin>
     </plugins>

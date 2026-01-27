@@ -5,9 +5,9 @@ import io.grpc.ServerBuilder;
 
 public final class SchedulerServer {
   public static void main(String[] args) throws Exception {
-    int port = 50053;
+    int port = 50054;
     Server server = ServerBuilder.forPort(port)
-        .addService(new SchedulerServiceImpl())
+        .addService(new SchedulerServiceImplV2())
         .build()
         .start();
 
